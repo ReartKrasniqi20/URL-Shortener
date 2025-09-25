@@ -20,6 +20,7 @@ $baseUrl = "https://short.link/";
 
             data.forEach(url => {
                 let displayUrl = baseUrl + url.short_code;
+                let expired = url.is_expired == 1; 
 
                 let li = document.createElement('li');
                 li.innerHTML = `
@@ -31,7 +32,10 @@ $baseUrl = "https://short.link/";
                         </svg>
                       </button>
                    </div>
-                   <div class="click-info">This link has been clicked ${url.click_count} times.</div>
+                   <div class="click-info">
+                      This link has been clicked ${url.click_count} times.
+                      ${expired ? '<span style="color:red";><i>Expired<i></span>' : ''}
+                   </div>
                 `;
                 list.appendChild(li);
             });
@@ -51,19 +55,16 @@ $baseUrl = "https://short.link/";
             }
         }
 
-      
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".custom-select").forEach(select => {
                 let btn = select.querySelector(".select-btn");
                 let options = select.querySelector(".select-options");
                 let hiddenInput = select.querySelector("input");
 
-               
                 btn.addEventListener("click", () => {
                     select.classList.toggle("open");
                 });
 
-                
                 options.querySelectorAll("li").forEach(option => {
                     option.addEventListener("click", () => {
                         btn.textContent = option.textContent;
@@ -89,7 +90,7 @@ $baseUrl = "https://short.link/";
         <aside class="sidebar">
             <div class="sidebar-inner">
                     <div class="logo">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" viewBox="0 0 747.87 128.57"><defs><style>.cls-1{fill:#383242;}.cls-1,.cls-2{stroke-width:0px;}.cls-2{fill:#683790;}</style></defs><g id="Layer_1-2">
+                         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" viewBox="0 0 747.87 128.57"><defs><style>.cls-1{fill:#383242;}.cls-1,.cls-2{stroke-width:0px;}.cls-2{fill:#683790;}</style></defs><g id="Layer_1-2">
                         <path class="cls-2" d="m109.74,18.83C97.6,6.69,81.46,0,64.29,0S30.97,6.69,18.83,18.83C6.69,30.97,0,47.11,0,64.29s6.69,33.31,18.83,45.46c12.14,12.14,28.29,18.83,45.46,18.83s33.31-6.69,45.46-18.83c12.14-12.14,18.83-28.29,18.83-45.46s-6.69-33.31-18.83-45.46Zm-53-.46c2.48-.41,5.01-.61,7.54-.61,2.92,0,5.84.27,8.68.81,8.38,1.59,16.16,5.48,22.5,11.26,5.83,5.32,10.2,12,12.7,19.42h-16.39c-3.85-7.13-10.41-12.57-18.13-14.99l-1.82-.57v42.38h-15.08V18.37Zm51.97,58.71c-2.38,8.13-6.96,15.46-13.27,21.2-6.34,5.77-14.11,9.66-22.49,11.25-2.84.54-5.76.81-8.68.81s-5.84-.27-8.68-.81c-8.38-1.59-16.15-5.48-22.49-11.25-6.3-5.74-10.89-13.07-13.27-21.21-.68-2.33-1.18-4.72-1.49-7.14h15.26c.54,2.84,1.47,5.58,2.78,8.17,3.78,7.5,10.53,13.23,18.52,15.74,3.02.95,6.17,1.43,9.36,1.43s6.34-.48,9.36-1.43c7.99-2.51,14.74-8.25,18.52-15.74,1.31-2.59,2.24-5.33,2.78-8.17h15.26c-.31,2.42-.81,4.82-1.49,7.14Z"></path>
                         <path class="cls-1" d="m190.59,21.44l-32.77,83.42h16.81l6.06-15.83h38.46l6.06,15.83h16.81l-32.77-83.42h-18.68Zm24.15,53.93h-29.62l14.81-39.92,14.81,39.92Z"></path>
                         <path class="cls-1" d="m280.95,42.72c-9.06,0-16.4,4.45-20.57,8.91v-7.42h-13.9v60.66h13.9v-41.99c2.67-3.6,8.12-7.73,14.88-7.73,7.88,0,11.54,3.79,11.54,11.92v37.81h13.9v-42.51c0-12.84-6.83-19.63-19.75-19.63Z"></path>
