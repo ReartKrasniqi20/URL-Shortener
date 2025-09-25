@@ -4,12 +4,12 @@ require 'db.php';
 if (isset($_GET['id'])) {
     $id = (int) $_GET['id'];
 
-    // Get short_code before deleting
+    
     $stmt = $pdo->prepare("SELECT short_code FROM short_urls WHERE id = :id");
     $stmt->execute([':id' => $id]);
     $shortUrl = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Delete from local DB
+    
     $stmt = $pdo->prepare("DELETE FROM short_urls WHERE id = :id");
     $stmt->execute([':id' => $id]);
 
