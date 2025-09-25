@@ -12,7 +12,7 @@ $baseUrl = "https://short.link/";
         const baseUrl = "https://short.link/"; 
 
         async function loadStats() {
-            let response = await fetch('stats.php');
+            let response = await fetch('active_urls.php');
             let data = await response.json();
 
             let list = document.getElementById('url-list');
