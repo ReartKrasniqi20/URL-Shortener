@@ -38,7 +38,8 @@ $baseUrl = "https://short.link/";
                    </div>
                    <div class="click-info">
                         ${clickText}
-                      ${expired ? '<span style="color:red";><i>Expired<i></span>' : ''}
+                     ${expired ? '<span style="color:#FF0000; font-size:11px;">Expired</span>' : ''}
+
                    </div>
                 `;
                 list.appendChild(li);
