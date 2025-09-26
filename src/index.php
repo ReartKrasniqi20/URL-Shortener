@@ -22,6 +22,10 @@ $baseUrl = "https://short.link/";
                 let displayUrl = baseUrl + url.short_code;
                 let expired = url.is_expired == 1; 
 
+                let clickText = url.click_count == 1 
+                     ? `This link has been clicked ${url.click_count} time.` 
+                     : `This link has been clicked ${url.click_count} times.`;
+
                 let li = document.createElement('li');
                 li.innerHTML = `
                    <div class="link-top">
@@ -33,7 +37,7 @@ $baseUrl = "https://short.link/";
                       </button>
                    </div>
                    <div class="click-info">
-                      This link has been clicked ${url.click_count} times.
+                        ${clickText}
                       ${expired ? '<span style="color:red";><i>Expired<i></span>' : ''}
                    </div>
                 `;
